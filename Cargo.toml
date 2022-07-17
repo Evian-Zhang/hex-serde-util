@@ -2,6 +2,12 @@
 name = "hex-serde-util"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "A helper crate for manipulating hex strings with serde"
+homepage = "https://github.com/Evian-Zhang/serde-hex-util"
+documentation = "https://docs.rs/serde-hex-util"
+repository = "https://github.com/Evian-Zhang/serde-hex-util"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
