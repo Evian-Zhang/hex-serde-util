@@ -1,6 +1,6 @@
 # hex-serde-util
 
-This crate provides a convenient approach to serializing/deserializing hex numbers.
+This crate provides a convenient approach to serializing/deserializing hex numbers with hex string of several formats.
 
 ## Examples
 
