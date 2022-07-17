@@ -57,9 +57,9 @@ macro_rules! impl_serde_hex {
     ($target_type: ty, $format_str: expr) => {
         use serde::{Deserialize, Serialize};
         use std::fmt;
-        use std::ops::Deref;
+        use std::ops::{Deref, DerefMut};
 
-        #[derive(Serialize, Deserialize, Debug, Copy, Clone)]
+        #[derive(Serialize, Deserialize, Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd)]
         #[serde(transparent)]
         pub struct HexInternal {
             #[serde(with = "serde_hex")]
@@ -74,9 +74,21 @@ macro_rules! impl_serde_hex {
             }
         }
 
+        impl DerefMut for HexInternal {
+            fn deref_mut(&mut self) -> &mut <Self as Deref>::Target {
+                &mut self.value
+            }
+        }
+
         impl fmt::Display for HexInternal {
             fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
                 write!(f, $format_str, &self.value)
+            }
+        }
+
+        impl From<$target_type> for HexInternal {
+            fn from(value: $target_type) -> Self {
+                Self { value }
             }
         }
     };
